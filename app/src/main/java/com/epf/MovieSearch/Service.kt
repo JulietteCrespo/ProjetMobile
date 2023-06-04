@@ -2,7 +2,9 @@ package com.epf.MovieSearch
 
 import android.text.Editable
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface Service {
@@ -13,4 +15,12 @@ companion object {
     @GET("movie?api_key=$API_KEY")
     fun getService(@Query("query") movie: Editable): Call<MovieObject>
 
+    @GET("movie/{movie_id}?api_key=$API_KEY")
+    suspend fun getMovieDetails(
+        @Path("movie_id") movieId: Int,
+        @Query("language") language: String,
+        @Query("append_to_response") appendToResponse: String
+    ): Response<movieJsonObject>
+
 }
+

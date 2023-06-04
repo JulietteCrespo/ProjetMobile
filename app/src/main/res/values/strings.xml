@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">MovieSearch</string>
+    <string name="app_name">FilmTest</string>
+    <string name="title_home">Home</string>
+    <string name="title_recherche">Rechercher</string>
+    <string name="title_favori">Favoris</string>
+    <string name="title_categori">Catégories</string>
+    <string name="title_qr_code">QR Code</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

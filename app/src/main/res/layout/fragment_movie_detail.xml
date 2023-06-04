@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.MovieDetailFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/detail"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/details_movie_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Movie Title"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="550dp"
+                    android:layout_marginTop="15dp"
+                    app:cardCornerRadius="15dp">
+
+                    <ImageView
+                        android:id="@+id/details_imageview"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop" />
+                </androidx.cardview.widget.CardView>
+
+
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/details_runtime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="120min"
+                        android:textColor="@color/black"
+                        android:layout_marginStart="20dp"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/details_language"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="(FR)"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:layout_marginStart="10dp"
+                        android:textSize="16sp" />
+                    <TextView
+                        android:id="@+id/details_release_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2023"
+                        android:textColor="@color/black"
+                        android:layout_marginStart="10dp"
+                        android:textSize="17sp" />
+
+                </LinearLayout>
+                    <TextView
+                        android:id="@+id/details_genre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Action, Adventure"
+                        android:textColor="@color/black"
+                        android:layout_marginStart="20dp"
+                        android:textStyle="bold"
+                        android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RatingBar
+                        android:id="@+id/details_ratingbar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="-150dp"
+                        android:layout_marginEnd="-10dp"
+                        android:layout_marginTop="-10dp"
+                        android:isIndicator="true"
+                        android:numStars="10"
+                        android:rating="2.2"
+                        android:scaleX="0.3"
+                        android:scaleY="0.3"
+                        android:stepSize="0.5" />
+
+                    <TextView
+                        android:id="@+id/details_average_rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="(4.0)"
+                        android:textColor="@color/black"
+                        android:layout_marginStart="-150dp"
+                        android:layout_marginTop="5dp"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/details_overview_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="0dp"
+                    android:text="Resumé"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/details_overview_body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="80dp"
+                    android:text="esque diam volutpat commodo sed egestas egestas fringilla phasellus. Nunc sed velit dignissim sodales ut eu sem integer. Viverra nam libero justo laoreet. Venenatis a condimentum vitae sapien pellentesque habitant morbi tristique senectus. Viverra vitae congue eu consequat ac felis donec et. Urna porttitor rhoncus dolor purus non enim praesent elementum facilisis. In nisl nisi scelerisque eu ultrices vitae auctor. Cursus turpis massa tincidunt dui ut ornare lectus."
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="fill"/>
+            </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

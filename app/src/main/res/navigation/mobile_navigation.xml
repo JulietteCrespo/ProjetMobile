@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.epf.MovieSearch.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_recherche"
+        android:name="com.epf.MovieSearch.ui.recherche.RechercheFragment"
+        android:label="@string/title_recherche"
+        tools:layout="@layout/fragment_recherche" />
+
+    <fragment
+        android:id="@+id/navigation_favori"
+        android:name="com.epf.MovieSearch.ui.favori.FavoriFragment"
+        android:label="@string/title_favori"
+        tools:layout="@layout/fragment_favori" />
+
+    <fragment
+        android:id="@+id/navigation_categori"
+        android:name="com.epf.MovieSearch.ui.categori.CategoriFragment"
+        android:label="@string/title_categori"
+        tools:layout="@layout/fragment_categori"/>
+    <fragment
+        android:id="@+id/navigation_qr_code"
+        android:name="com.epf.MovieSearch.ui.qrcode.QRCodeFragment"
+        android:label="@string/title_qr_code"
+        tools:layout="@layout/fragment_q_r_code"/>
+    <fragment
+        android:id="@+id/navigation_detail_movie"
+        android:name="com.epf.MovieSearch.ui.MovieDetailFragment"
+        android:label="Detail movie"
+        tools:layout="@layout/fragment_movie_detail"/>
+
+</navigation>
