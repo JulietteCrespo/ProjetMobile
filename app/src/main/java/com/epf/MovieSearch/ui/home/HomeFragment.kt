@@ -59,8 +59,7 @@ class HomeFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         super.onCreate(savedInstanceState)
 
-        ListFilm = view.findViewById<RecyclerView>(R.id.movieTitle)
-        Film = view.findViewById<TextView>(R.id.overview)
+
 
           return view
         // Inflate the layout for this fragment
