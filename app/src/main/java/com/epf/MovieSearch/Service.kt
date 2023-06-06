@@ -22,5 +22,9 @@ companion object {
         @Query("append_to_response") appendToResponse: String
     ): Response<movieJsonObject>
 
+    @GET("movie/{movie_id}/recommendations?api_key=$API_KEY")
+     fun getMovieRecommendation(
+        @Path("movie_id") movieId: Int,
+    ): Call<MovieObject>
 }
 

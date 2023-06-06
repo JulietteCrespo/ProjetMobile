@@ -25,4 +25,5 @@
         android:icon="@drawable/baseline_qr_code_scanner_24"
         android:title="@string/title_qr_code" />
 
+
 </menu>
