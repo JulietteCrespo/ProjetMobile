@@ -8,6 +8,9 @@ data class MovieObject(
     var page : Int,
     var results : Array<movieJsonObject>
 )
+data class MovieResponse(
+    val results: Array<movieJsonObject>
+)
 data class Genre(
     val id: Int,
     val name: String

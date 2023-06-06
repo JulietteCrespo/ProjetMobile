@@ -82,10 +82,10 @@ class MovieDetailFragment : Fragment() {
         image = view.findViewById<ImageView>(R.id.details_imageview)
 
         val movieID = requireArguments().getInt("movieId")
-
-        com.epf.MovieSearch.ui.recherche.recyclerView = view.findViewById<RecyclerView>(R.id.movieRecoTitle)
+        overview = view.findViewById(R.id.overviewMovieDetail)
+        recyclerView = view.findViewById<RecyclerView>(R.id.movieRecoTitle)
         val layoutManager = LinearLayoutManager(requireContext())
-        com.epf.MovieSearch.ui.recherche.recyclerView.layoutManager = layoutManager
+       recyclerView.layoutManager = layoutManager
         
         
         getMovieDetails(movieID)
@@ -110,7 +110,7 @@ class MovieDetailFragment : Fragment() {
                     val result = response.body()
                     val adapter = result?.results?.let { MovieAdapter(it, requireContext()) }
 
-                    com.epf.MovieSearch.ui.recherche.recyclerView.adapter = adapter
+                    recyclerView.adapter = adapter
                     overview.text = result?.results?.get(0)?.overview
                 }
             }
