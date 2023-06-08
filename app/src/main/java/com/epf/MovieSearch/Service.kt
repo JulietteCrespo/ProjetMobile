@@ -28,6 +28,12 @@ interface Service {
     @GET("movie/popular?api_key=$API_KEY")
     fun getPopular(): Call<MovieObject>
 
+    @GET("movie/now_playing?api_key=$API_KEY")
+    fun getPlaying(): Call<MovieObject>
+
+    @GET("movie/top_rated?api_key=$API_KEY")
+    fun getTop(): Call<MovieObject>
+
     @GET("movie/{movie_id}?api_key=$API_KEY")
     suspend fun getMovieDetails(
         @Path("movie_id") movieId: Int,
