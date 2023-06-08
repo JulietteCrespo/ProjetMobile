@@ -26,6 +26,8 @@ import java.util.concurrent.ExecutorService
 import android.widget.Toast
 import android.util.Log
 import android.content.Intent
+import androidx.core.os.bundleOf
+import androidx.navigation.Navigation
 import com.epf.MovieSearch.ui.MovieDetailFragment
 
 
@@ -123,17 +125,10 @@ class QRCodeFragment : Fragment() {
                         bundle.putString("film_id", value)
                         movieDetailFragment.arguments = bundle
                         val intValue = value.toInt()
-
-                        // Launch the MovieDetailFragment within the current fragment's context
-                        val fragment = MovieDetailFragment.newInstance(intValue)
-
-                        val fragmentManager = requireActivity().supportFragmentManager
-
-                        // Remplacez le fragment actuel par le fragment MovieDetailFragment
-                        fragmentManager.beginTransaction()
-                            .replace(R.id.movieName, fragment)
-                            .addToBackStack(null) // Ajoutez la transaction à la pile de retour arrière
-                            .commit()
+                        val navController = view?.let { Navigation.findNavController(it) }
+                        if (navController != null) {
+                            navController.navigate(R.id.navigation_detail_movie, bundleOf("movieId" to intValue))
+                        }
                     }
                 }
                 .addOnFailureListener {

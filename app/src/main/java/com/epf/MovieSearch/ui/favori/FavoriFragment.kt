@@ -13,7 +13,9 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.epf.MovieSearch.MovieObject
@@ -106,19 +108,10 @@ class FavoriFragment : Fragment() {
                      }
                      adapter?.setOnItemClickListener(object : FavoriFragment.MovieAdapter.OnItemClickListener {
                          override fun onItemClick(movie: movieJsonObject) {
-                             val fragment = MovieDetailFragment.newInstance(movie.id)
-
-                             // Obtenez le gestionnaire de fragments de l'activité
-                             val fragmentManager = requireActivity().supportFragmentManager
-
-                             // Remplacez le fragment actuel par le fragment MovieDetailFragment
-                             fragmentManager.beginTransaction()
-                                 .replace(R.id.movieName, fragment)
-                                 .addToBackStack(null) // Ajoutez la transaction à la pile de retour arrière
-                                 .commit()
-
-                             // Gérer le clic de l'élément ici
-                             // Par exemple, ouvrir un nouveau fragment avec les détails du film sélectionné
+                             val navController = view?.let { Navigation.findNavController(it) }
+                             if (navController != null) {
+                                 navController.navigate(R.id.navigation_detail_movie, bundleOf("movieId" to movie.id))
+                             }
                          }
                      })
                      recyclerView.adapter = adapter

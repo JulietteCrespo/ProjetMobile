@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.core.view.get
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -47,13 +48,29 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_home, R.id.navigation_categori,R.id.navigation_recherche, R.id.navigation_favori, R.id.navigation_qr_code, R.id.navigation_detail_movie
-            )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        // Set a custom OnNavigationItemSelectedListener
+        navView.setOnNavigationItemSelectedListener { item ->
+            val destinationId = item.itemId
+
+            if (destinationId == R.id.navigation_home ||
+                destinationId == R.id.navigation_categori ||
+                destinationId == R.id.navigation_recherche ||
+                destinationId == R.id.navigation_favori ||
+                destinationId == R.id.navigation_qr_code ||
+                destinationId == R.id.navigation_detail_movie
+
+
+                    ) {
+                val backStackName = "stack_$destinationId"
+                val inclusive = true
+
+                navController.navigate(destinationId)
+
+                true
+            } else {
+                false
+            }
+        }
 
     }
 

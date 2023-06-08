@@ -12,7 +12,9 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.epf.MovieSearch.MovieObject
@@ -101,29 +103,16 @@ class RechercheFragment : Fragment() {
 
                     adapter?.setOnItemClickListener(object : MovieAdapter.OnItemClickListener {
                         override fun onItemClick(movie: movieJsonObject) {
-                            val fragment = MovieDetailFragment.newInstance(movie.id)
-
-                            // Obtenez le gestionnaire de fragments de l'activité
-                            val fragmentManager = requireActivity().supportFragmentManager
-
-                            // Remplacez le fragment actuel par le fragment MovieDetailFragment
-                            fragmentManager.beginTransaction()
-                                .replace(R.id.movieName, fragment)
-                                .addToBackStack(null) // Ajoutez la transaction à la pile de retour arrière
-                                .commit()
-
-                            // Gérer le clic de l'élément ici
-                            // Par exemple, ouvrir un nouveau fragment avec les détails du film sélectionné
+                            val navController = view?.let { findNavController(it) }
+                            if (navController != null) {
+                                navController.navigate(R.id.navigation_detail_movie, bundleOf("movieId" to movie.id))
+                            }
                         }
                     })
                     recyclerView.adapter = adapter
                     overview.text = result?.results?.get(0)?.overview
 
-                    //var result = response.body()
-                    //getRecyclerView()
-                    //val adapter = result?.results?.let { MovieAdapter(it, requireContext()) }
-                    //recyclerView.adapter = adapter
-                    //overview.text = result?.results?.get(0)?.overview
+
                 }
             }
 

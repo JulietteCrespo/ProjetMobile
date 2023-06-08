@@ -37,6 +37,11 @@
         android:id="@+id/navigation_detail_movie"
         android:name="com.epf.MovieSearch.ui.MovieDetailFragment"
         android:label="Detail movie"
-        tools:layout="@layout/fragment_movie_detail"/>
-
+        tools:layout="@layout/fragment_movie_detail">
+    <action
+        android:id="@+id/action_to_movie_details"
+        app:destination="@id/navigation_detail_movie"
+        app:popUpTo="@+id/navigation_recherche"
+        app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
