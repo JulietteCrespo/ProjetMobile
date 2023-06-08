@@ -51,6 +51,37 @@
                 android:textColor="@color/black"
                 android:layout_marginStart="20dp"
                 android:textSize="10sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RatingBar
+                    android:id="@+id/details_ratingbar_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="-150dp"
+                    android:layout_marginEnd="-50dp"
+                    android:layout_marginTop="-10dp"
+                    android:isIndicator="true"
+                    android:numStars="10"
+                    android:rating="2.2"
+                    android:scaleX="0.3"
+                    android:scaleY="0.3"
+                    android:stepSize="0.5" />
+
+                <TextView
+                    android:id="@+id/details_average_rating_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(4.0)"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="-110dp"
+                    android:layout_marginTop="5dp"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
         </LinearLayout>
 
         </LinearLayout>

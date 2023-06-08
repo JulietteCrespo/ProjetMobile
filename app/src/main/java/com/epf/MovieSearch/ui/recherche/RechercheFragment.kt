@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -66,6 +67,7 @@ class RechercheFragment : Fragment() {
         recyclerView = rootView.findViewById(R.id.movieTitle)
         val layoutManager = LinearLayoutManager(requireContext())
         recyclerView.layoutManager = layoutManager
+
 
         searchMovieButton.setOnClickListener {
             val titleMovie = searchMovie.text
@@ -161,6 +163,12 @@ class RechercheFragment : Fragment() {
             view.setOnClickListener {
                 itemClickListener?.onItemClick(movie)
             }
+           val ratingBar = view.findViewById<RatingBar>(R.id.details_ratingbar_item)
+            ratingBar.rating = movie.vote_average?.toFloat()!!
+            val textViewAverageRating = view.findViewById<TextView>(R.id.details_average_rating_item)
+            textViewAverageRating.text = "("+ "%.1f".format(movie.vote_average).toString()+")"
+
+
 
         }
 

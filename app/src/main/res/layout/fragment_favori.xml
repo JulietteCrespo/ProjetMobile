@@ -7,13 +7,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="0dp"
         android:orientation="vertical"
         tools:ignore="MissingConstraints"
         >
+        <ImageView
+            android:id="@+id/details_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/favori"
+            android:scaleType="centerCrop"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/movieFavori"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />
