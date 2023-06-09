@@ -17,8 +17,10 @@ import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentFactory
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.epf.MovieSearch.MovieObject
@@ -40,18 +42,9 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MovieDetailFragment : Fragment() {
-    // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var textViewTitle: TextView
@@ -82,7 +75,6 @@ class MovieDetailFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_movie_detail, container, false)
 
-        // Initiate the views
         textViewTitle = view.findViewById<TextView>(R.id.details_movie_title)
         textDetailLanguage = view.findViewById<TextView>(R.id.details_language)
         textViewGenre = view.findViewById<TextView>(R.id.details_genre)
@@ -97,7 +89,7 @@ class MovieDetailFragment : Fragment() {
         overview = view.findViewById(R.id.overviewMovieDetail)
         recyclerView = view.findViewById<RecyclerView>(R.id.movieRecoTitle)
         val layoutManager = LinearLayoutManager(requireContext())
-       recyclerView.layoutManager = layoutManager
+        recyclerView.layoutManager = layoutManager
         getMovieDetails(movieID)
         getMovieReco(movieID)
         updateFavoritesButton()
@@ -132,34 +124,23 @@ class MovieDetailFragment : Fragment() {
                 }
                 if (response.isSuccessful) {
                     val result = response.body()
-                    // Votre ID de film recherché
                     val movieId = requireArguments().getInt("movieId")
                     val isMovieInFavorites = result?.results?.any { it.id == movieId }
 
                     if (isMovieInFavorites == true) {
-
                         // Le film est dans la liste des favoris
-                        // Faites quelque chose ici
-                        Toast.makeText(context, "Remove Favorie", Toast.LENGTH_LONG).show()
                         removeFavorite(movieId)
                         button.setImageResource(R.drawable.favorite_border)
-
                     } else {
-                        Toast.makeText(context, "add Favorie", Toast.LENGTH_LONG).show()
                         addFavorite(movieId)
                         button.setImageResource(R.drawable.favorite)
-
                         // Le film n'est pas dans la liste des favoris
-                        // Faites autre chose ici
-
                     }
-
                 }
             } catch (e: Exception) {
                 Log.e("TAG", "Error: ${e.message}")
             }
         }
-
     }
 
     private fun addFavorite(movieId : Int){
@@ -190,12 +171,6 @@ class MovieDetailFragment : Fragment() {
             try {
                 val response = withContext(Dispatchers.IO) {
                     Service.addToFavorites(19221259," Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiNGU2ZTljM2ViYjcxZWVkMTA3NzM3YmRlZTZhOTAzZSIsInN1YiI6IjY0NGU2MzBlZTFmYWVkMDM4OTAxZDFiNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.m3G_rng54Wm8JApKcb_h5EuEu3r966F5UUt2OpaQ8ys",request)
-                }
-                if (response.isSuccessful) {
-                    Log.e("TAG", "OK : ${response.code()} - ${response.message()}")
-
-                } else {
-                    Log.e("TAG", "Request failed: ${response.code()} - ${response.message()}")
                 }
             } catch (e: Exception) {
                 Log.e("TAG", "Error: ${e.message}")
@@ -231,13 +206,6 @@ class MovieDetailFragment : Fragment() {
                 val response = withContext(Dispatchers.IO) {
                     Service.addToFavorites(19221259," Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiNGU2ZTljM2ViYjcxZWVkMTA3NzM3YmRlZTZhOTAzZSIsInN1YiI6IjY0NGU2MzBlZTFmYWVkMDM4OTAxZDFiNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.m3G_rng54Wm8JApKcb_h5EuEu3r966F5UUt2OpaQ8ys",request)
                 }
-                if (response.isSuccessful) {
-                    Log.e("TAG", "OK : ${response.code()} - ${response.message()}")
-
-                } else {
-                    Log.e("TAG","eeeeeeee")
-                    Log.e("TAG", "Request failed: ${response.code()} - ${response.message()}")
-                }
             } catch (e: Exception) {
                 Log.e("TAG", "Error: ${e.message}")
             }
@@ -268,26 +236,17 @@ class MovieDetailFragment : Fragment() {
                 }
                 if (response.isSuccessful) {
                     val result = response.body()
-                    // Votre ID de film recherché
                     val movieId = requireArguments().getInt("movieId")
-
-                    // Vérifiez si l'ID du film est dans la liste des résultats
                     val isMovieInFavorites = result?.results?.any { it.id == movieId }
 
                     if (isMovieInFavorites == true) {
-
                         // Le film est dans la liste des favoris
-                        // Faites quelque chose ici
                         favoritesButton.setImageResource(R.drawable.favorite)
                     } else {
-
                         // Le film n'est pas dans la liste des favoris
-                        // Faites autre chose ici
                         favoritesButton.setImageResource(R.drawable.favorite_border)
                     }
-
                 } else {
-                    Log.e("TAG", "ZzZZzzzzzzzzzzzzzzzz")
                     Log.e("TAG", "Request failed: ${response.code()} - ${response.message()}")
                 }
             } catch (e: Exception) {
@@ -310,21 +269,12 @@ class MovieDetailFragment : Fragment() {
                 if(response.isSuccessful) {
                     val result = response.body()
                     val adapter = result?.results?.let { MovieAdapter(it, requireContext()) }
-                    adapter?.setOnItemClickListener(object :MovieAdapter.OnItemClickListener {
+                    adapter?.setOnItemClickListener(object : MovieAdapter.OnItemClickListener {
                         override fun onItemClick(movie: movieJsonObject) {
-                            val fragment = MovieDetailFragment.newInstance(movie.id)
-
-                            // Obtenez le gestionnaire de fragments de l'activité
-                            val fragmentManager = requireActivity().supportFragmentManager
-
-                            // Remplacez le fragment actuel par le fragment MovieDetailFragment
-                            fragmentManager.beginTransaction()
-                                .replace(R.id.movieName, fragment)
-                                .addToBackStack(null) // Ajoutez la transaction à la pile de retour arrière
-                                .commit()
-
-                            // Gérer le clic de l'élément ici
-                            // Par exemple, ouvrir un nouveau fragment avec les détails du film sélectionné
+                            val navController = view?.let { Navigation.findNavController(it) }
+                            if (navController != null) {
+                                navController.navigate(R.id.navigation_detail_movie, bundleOf("movieId" to movie.id))
+                            }
                         }
                     })
                     recyclerView.adapter = adapter
@@ -380,15 +330,6 @@ class MovieDetailFragment : Fragment() {
 
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             MovieDetailFragment().apply {
@@ -427,8 +368,6 @@ class MovieDetailFragment : Fragment() {
 
         val Service = retrofit.create(Service::class.java)
 
-        //val movieID = requireArguments().getInt("movieId")
-
         lifecycleScope.launch {
             try {
                 val response = withContext(Dispatchers.IO) {
@@ -447,9 +386,6 @@ class MovieDetailFragment : Fragment() {
                     val genreString = genreNames?.joinToString(", ") // Convertir la liste de noms en une chaîne de caractères séparée par des virgules
 
                     textViewGenre.text = genreString
-
-
-
                     ratingBar.rating = movieDetails?.vote_average?.toFloat()!!
                     textViewAverageRating.text = "("+ "%.1f".format(movieDetails?.vote_average).toString()+")"
 

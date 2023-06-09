@@ -14,8 +14,6 @@ import retrofit2.http.Query
 
 interface Service {
     companion object {
-
-
         const val API_KEY = "b4e6e9c3ebb71eed107737bdee6a903e"
         const val ACCOUNT_ID = 19221259
         const val ACCESS_TOKEN =

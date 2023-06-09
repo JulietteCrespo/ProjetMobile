@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.os.bundleOf
@@ -25,8 +24,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
@@ -36,13 +34,9 @@ lateinit var overviewPopu : TextView
 lateinit var  recyclerViewPopu: RecyclerView
 lateinit var overviewTop : TextView
 lateinit var  recyclerViewTop: RecyclerView
-/**
- * A simple [Fragment] subclass.
- * Use the [CategoriFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class CategoriFragment : Fragment() {
-    // TODO: Rename and change types of parameters
+
     private var param1: String? = null
     private var param2: String? = null
 
@@ -110,15 +104,8 @@ class CategoriFragment : Fragment() {
                     })
                     recyclerViewTop.adapter = adapter
                     overviewTop.text = result?.results?.get(0)?.overview
-
-                    //var result = response.body()
-                    //getRecyclerView()
-                    //val adapter = result?.results?.let { MovieAdapter(it, requireContext()) }
-                    //recyclerView.adapter = adapter
-                    //overview.text = result?.results?.get(0)?.overview
                 }
             }
-
             override fun onFailure(call: Call<MovieObject>, t: Throwable) {
                 Toast.makeText(requireContext(), "Erreur serveur", Toast.LENGTH_LONG).show()
             }
@@ -154,15 +141,8 @@ class CategoriFragment : Fragment() {
                     })
                     recyclerViewPopu.adapter = adapter
                     overviewPopu.text = result?.results?.get(0)?.overview
-
-                    //var result = response.body()
-                    //getRecyclerView()
-                    //val adapter = result?.results?.let { MovieAdapter(it, requireContext()) }
-                    //recyclerView.adapter = adapter
-                    //overview.text = result?.results?.get(0)?.overview
                 }
             }
-
             override fun onFailure(call: Call<MovieObject>, t: Throwable) {
                 Toast.makeText(requireContext(), "Erreur serveur", Toast.LENGTH_LONG).show()
             }
@@ -193,15 +173,8 @@ class CategoriFragment : Fragment() {
                     })
                     recyclerView.adapter = adapter
                     overview.text = result?.results?.get(0)?.overview
-
-                    //var result = response.body()
-                    //getRecyclerView()
-                    //val adapter = result?.results?.let { MovieAdapter(it, requireContext()) }
-                    //recyclerView.adapter = adapter
-                    //overview.text = result?.results?.get(0)?.overview
                 }
             }
-
             override fun onFailure(call: Call<MovieObject>, t: Throwable) {
                 Toast.makeText(requireContext(), "Erreur serveur", Toast.LENGTH_LONG).show()
             }
@@ -235,25 +208,13 @@ class CategoriFragment : Fragment() {
             view.setOnClickListener {
                 itemClickListener?.onItemClick(movie)
             }
-
         }
-
-
     }
     class MovieViewHolder(inflater: LayoutInflater, viewGroup: ViewGroup) :
         RecyclerView.ViewHolder(inflater.inflate(R.layout.item_movie_2, viewGroup, false))
 
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CategoriFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             CategoriFragment().apply {

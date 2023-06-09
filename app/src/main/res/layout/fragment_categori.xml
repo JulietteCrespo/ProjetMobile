@@ -36,7 +36,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/movieCategoriPlaying"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="0dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -61,7 +61,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/movieCategoriPopular"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="0dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -86,7 +86,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="-30dp"
+            android:layout_marginTop="-40dp"
             android:text="Les mieux notés"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -94,7 +94,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/movieCategoriTop"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="0dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

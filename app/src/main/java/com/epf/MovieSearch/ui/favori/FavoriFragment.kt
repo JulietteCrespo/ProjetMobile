@@ -2,55 +2,38 @@ package com.epf.MovieSearch.ui.favori
 
 import android.content.Context
 import android.os.Bundle
-import android.text.Editable
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.epf.MovieSearch.MovieObject
 import com.epf.MovieSearch.R
 import com.epf.MovieSearch.Service
-import com.epf.MovieSearch.Service.Companion.ACCESS_TOKEN
 import com.epf.MovieSearch.movieJsonObject
-import com.epf.MovieSearch.ui.MovieDetailFragment
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 lateinit var overview : TextView
 lateinit var  recyclerView: RecyclerView
-/**
- * A simple [Fragment] subclass.
- * Use the [FavoriFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class FavoriFragment : Fragment() {
-    // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -117,7 +100,6 @@ class FavoriFragment : Fragment() {
                      recyclerView.adapter = adapter
                      overview.text = result?.results?.get(0)?.overview
 
-
                  } else {
                      Log.e("TAG", "Request failed: ${response.code()} - ${response.message()}")
                  }
@@ -125,7 +107,6 @@ class FavoriFragment : Fragment() {
                  Log.e("TAG", "Error: ${e.message}")
              }
          }
-
     }
 
     class MovieAdapter(private val movies : Array<movieJsonObject>, val context : Context) : RecyclerView.Adapter<MovieViewHolder>() {
@@ -162,25 +143,12 @@ class FavoriFragment : Fragment() {
             ratingBar.rating = movie.vote_average?.toFloat()!!
             val textViewAverageRating = view.findViewById<TextView>(R.id.details_average_rating_item)
             textViewAverageRating.text = "("+ "%.1f".format(movie.vote_average).toString()+")"
-
-
         }
-
-
     }
     class MovieViewHolder(inflater: LayoutInflater, viewGroup: ViewGroup) :
         RecyclerView.ViewHolder(inflater.inflate(R.layout.item_movie, viewGroup, false))
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FavoriFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             FavoriFragment().apply {

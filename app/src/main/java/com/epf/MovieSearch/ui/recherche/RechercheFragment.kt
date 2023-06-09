@@ -35,17 +35,10 @@ private const val ARG_PARAM2 = "param2"
 
 lateinit var searchMovie : EditText
 lateinit var searchMovieButton : Button
-lateinit var nameMovie : RecyclerView
 lateinit var overview : TextView
 lateinit var  recyclerView: RecyclerView
 
-/**
- * A simple [Fragment] subclass.
- * Use the [RechercheFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class RechercheFragment : Fragment() {
-    // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
@@ -70,7 +63,6 @@ class RechercheFragment : Fragment() {
         val layoutManager = LinearLayoutManager(requireContext())
         recyclerView.layoutManager = layoutManager
 
-
         searchMovieButton.setOnClickListener {
             val titleMovie = searchMovie.text
             if (titleMovie.isEmpty()) {
@@ -79,12 +71,7 @@ class RechercheFragment : Fragment() {
                 getToSearchMovie(titleMovie)
             }
         }
-
         return rootView
-    }
-    private fun getRecyclerView() {
-        recyclerView = requireView().findViewById(R.id.movieTitle)
-        // Configurez le layoutManager et l'adaptateur ici
     }
     fun getToSearchMovie(titleMovie: Editable) {
         val retrofit: Retrofit = Retrofit.Builder()
@@ -111,11 +98,8 @@ class RechercheFragment : Fragment() {
                     })
                     recyclerView.adapter = adapter
                     overview.text = result?.results?.get(0)?.overview
-
-
                 }
             }
-
             override fun onFailure(call: Call<MovieObject>, t: Throwable) {
                 Toast.makeText(requireContext(), "Erreur serveur", Toast.LENGTH_LONG).show()
             }
@@ -156,27 +140,13 @@ class RechercheFragment : Fragment() {
             ratingBar.rating = movie.vote_average?.toFloat()!!
             val textViewAverageRating = view.findViewById<TextView>(R.id.details_average_rating_item)
             textViewAverageRating.text = "("+ "%.1f".format(movie.vote_average).toString()+")"
-
-
-
         }
-
-
     }
     class MovieViewHolder(inflater: LayoutInflater, viewGroup: ViewGroup) :
         RecyclerView.ViewHolder(inflater.inflate(R.layout.item_movie, viewGroup, false))
 
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment RechercheFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic fun newInstance(param1: String, param2: String) =
                 RechercheFragment().apply {
                     arguments = Bundle().apply {
@@ -185,6 +155,5 @@ class RechercheFragment : Fragment() {
                     }
                 }
     }
-
 
 }
